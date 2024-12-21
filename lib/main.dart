@@ -1,7 +1,11 @@
-//import 'dart:ffi';
+// import 'dart:ffi';
+
+import 'dart:ffi';
 
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_application_blog_club/carosel/carousel_slider.dart';
 import 'package:flutter_application_blog_club/data.dart';
 
@@ -39,6 +43,14 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.w200,
               color: secondaryTextColor,
             ),
+
+            /// subtitle2 [Title small list]
+            titleMedium: TextStyle(
+              fontFamily: fontFamily,
+              fontSize: 18,
+              fontWeight: FontWeight.w400,
+              color: secondaryTextColor,
+            ),
             headlineSmall: TextStyle(
 
                 //headline 6 : [Explore Today's],
@@ -50,7 +62,7 @@ class MyApp extends StatelessWidget {
             labelMedium: TextStyle(
               fontFamily: fontFamily,
               fontSize: 18,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w500,
               color: Colors.white,
             )),
         useMaterial3: true,
@@ -82,8 +94,8 @@ class _MyHomePageState extends State<MyHomePage> {
   //we defining this in data.main with json style
   final stories = AppDatabase.stories;
   @override
+  // fixed value for themeData
   Widget build(BuildContext context) {
-    // fixed value for themeData
     final constOfThemeData = Theme.of(context);
     // # Flutter Comment:
     // This method is rerun every time setState is called, for instance as done
@@ -104,46 +116,55 @@ class _MyHomePageState extends State<MyHomePage> {
           // title: Text(widget.title),
           ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(32, 16, 32, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Hello, user!',
-                            style: constOfThemeData.textTheme.titleSmall),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          "Explore Today's",
-                          style: constOfThemeData.textTheme.headlineSmall,
-                        ),
-                      ],
-                    ),
-                    Image.asset(
-                      'assets/img/icons/notification.png',
-                      width: 32,
-                      height: 32,
-                    ),
-                  ],
+        child: SizedBox(
+          child: SingleChildScrollView(
+            // for mix all  scroll view, this(main scroll) and post list scroll
+            physics: BouncingScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(32, 16, 32, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Hello, MH!.',
+                              style: constOfThemeData.textTheme.titleSmall),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            "Explore Today's",
+                            style: constOfThemeData.textTheme.headlineSmall,
+                          ),
+                        ],
+                      ),
+                      Image.asset(
+                        'assets/img/icons/notification.png',
+                        width: 32,
+                        height: 32,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              _StoryList(stories: stories),
-              SizedBox(
-                height: 16,
-              ),
-              _CategoryList()
-            ],
-            // # Flutter comment :
-            // Center is a layout widget. It takes a single child and positions it
-            // in the middle of the parent.
+                _StoryList(stories: stories),
+                SizedBox(
+                  height: 16,
+                ),
+                _CategoryList(),
+                SizedBox(
+                  height: 32,
+                ),
+                // # Test of TItle of POst list
+                _PostList(),
+              ],
+              // # Flutter comment :
+              // Center is a layout widget. It takes a single child and positions it
+              // in the middle of the parent.
+            ),
           ),
         ),
       ),
@@ -388,5 +409,172 @@ class because extends StatelessWidget {
                 style: Theme.of(context).textTheme.labelMedium))
       ]),
     );
+  }
+}
+
+class _PostList extends StatelessWidget {
+  _PostList({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    final postList = AppDatabase.posts;
+    return Column(
+      children: [
+        Padding(padding: EdgeInsets.only(left: 32, right: 24)),
+        // Title and "More" Bottom in this row
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('The Latest News',
+                style: Theme.of(context).textTheme.headlineSmall),
+            TextButton(
+                onPressed: () {},
+                child: Text('More',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 100, 100, 255),
+                    )))
+          ],
+        ),
+        SizedBox(
+          // width: MediaQuery.of(context).size.width,
+          child: ListView.builder(
+              itemCount: postList.length,
+              itemExtent: 151,
+              // bad performance in long list
+              // in list view should set
+              shrinkWrap: true,
+              physics: ClampingScrollPhysics(),
+              itemBuilder: (context, index) {
+                final post = postList[index];
+                return Container(
+                  // not ues
+                  // height: 149,
+                  margin: const EdgeInsets.fromLTRB(32, 8, 32, 8),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(24),
+                      boxShadow: [
+                        BoxShadow(blurRadius: 10, color: Color(0x1a5282FF))
+                      ]),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                            'assets/img/posts/small/${post.imageFileName}'),
+                        SizedBox(
+                          width: 16,
+                        ),
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 8,
+                              ),
+                              // Caption Text
+                              Text(
+                                post.caption,
+                                style: TextStyle(
+                                    fontFamily: MyApp.fontFamily,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 14,
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              // Title Post
+                              Text(
+                                post.title,
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Row(
+                                children: [
+                                  Icon(CupertinoIcons.hand_thumbsup,
+                                      size: 16,
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .color),
+                                  SizedBox(
+                                    width: 4,
+                                  ),
+                                  Text(
+                                    post.likes,
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium,
+                                  ),
+                                  SizedBox(
+                                    width: 4,
+                                  ),
+                                  Icon(CupertinoIcons.clock,
+                                      size: 16,
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .color),
+                                  SizedBox(
+                                    width: 4,
+                                  ),
+                                  Text(
+                                    post.time,
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium,
+                                  ),
+                                  Container(
+                                    child: Expanded(
+                                      child: Icon(post.isBookmarked? CupertinoIcons.bookmark_fill: CupertinoIcons.bookmark,
+                                          size: 16,
+                                          color: Color.fromARGB(
+                                              255, 55, 106, 237)),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: 8,
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              }),
+        )
+      ],
+    );
+  }
+}
+
+class _Post extends StatefulWidget {
+  const _Post({
+    super.key,
+    required this.post,
+  });
+
+  final PostData post;
+
+  @override
+  State<_Post> createState() => _PostState();
+}
+
+class _PostState extends State<_Post> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Text('data test in bute'),
+      ],
+    );
+    // ignore: dead_code
+    Container();
   }
 }
