@@ -23,3 +23,19 @@ happy!
 We test we test on 
 - linux Ubuntu 22.04 AMD64 
 - Android API UpsideDownCake
+
+# What package we use?
+## Flutter gen
+link : [https://github.com/mhmiripoor/blogclub.git]
+for name assents (image and fonts) in there we beater to use this. before run this ypu should add in assets. than use this!
+this is the fact why we use this:
+- less mistake: 
+- change name is to harder than `Img.assets`
+- how much we use some picture 
+
+we develop img like this
+```Assets.img.icons.notification.image(),```   
+when you change path, you should be run this commend in terminal for change file name
+`dart run build_runner build`
+We Can use svg like this:
+`Assets.img.icons.logo.svg(width: 32, height: 32),` 
