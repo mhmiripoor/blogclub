@@ -39,3 +39,10 @@ when you change path, you should be run this commend in terminal for change file
 `dart run build_runner build`
 We Can use svg like this:
 `Assets.img.icons.logo.svg(width: 32, height: 32),` 
+
+# Page
+All page is in deferent code for stop hardcoding. 
+the list of page is:
+1. **splash** screen : wait screen for run app
+2. **home**: Home Screen page 
+**main** page is base page and we don't add hear. for bottom navigation 
