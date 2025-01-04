@@ -9,6 +9,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_blog_club/carosel/carousel_slider.dart';
 import 'package:flutter_application_blog_club/data.dart';
+import 'package:flutter_application_blog_club/gen/assets.gen.dart';
+import 'package:flutter_application_blog_club/gen/fonts.gen.dart';
 
 void main() {
   runApp(MyApp());
@@ -39,14 +41,14 @@ class MyApp extends StatelessWidget {
 
               /// bodyText [story name]
               bodyMedium: TextStyle(
-                fontFamily: fontFamily,
+                fontFamily: FontFamily.avenir,
                 color: primaryTextColor,
                 fontSize: 12,
               ),
 
               /// subtitle1 [hello user]
               titleSmall: TextStyle(
-                fontFamily: fontFamily,
+                fontFamily: FontFamily.avenir,
                 fontSize: 18,
                 fontWeight: FontWeight.w200,
                 color: secondaryTextColor,
@@ -54,27 +56,27 @@ class MyApp extends StatelessWidget {
 
               /// subtitle2 [Title small list]
               titleMedium: TextStyle(
-                fontFamily: fontFamily,
+                fontFamily: FontFamily.avenir,
                 fontSize: 18,
                 fontWeight: FontWeight.w400,
                 color: secondaryTextColor,
               ),
               //Caption in bottom navigating
               displaySmall: TextStyle(
-                fontFamily: fontFamily,
+                fontFamily: FontFamily.avenir,
                 fontWeight: FontWeight.w700,
                 color: Color(0xff7B8BB2),
                 fontSize: 10,
               ),
               headlineSmall: TextStyle(
                   //headline 6 : [Explore Today's],
-                  fontFamily: fontFamily,
+                  fontFamily: FontFamily.avenir,
                   fontSize: 24,
                   color: primaryTextColor,
                   fontWeight: FontWeight.w700),
               // headline 6 : [Category Cart Name]
               labelMedium: TextStyle(
-                fontFamily: fontFamily,
+                fontFamily: FontFamily.avenir,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
                 color: Colors.white,
@@ -167,11 +169,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ],
                       ),
-                      Image.asset(
-                        'assets/img/icons/notification.png',
-                        width: 32,
-                        height: 32,
-                      ),
+                      Assets.img.icons.logo.svg(width: 32, height: 32),
+                      Assets.img.icons.notification
+                          .image(height: 32, width: 32),
                     ],
                   ),
                 ),
@@ -245,8 +245,8 @@ class _StoryList extends StatelessWidget {
                         height: 24,
                         width: 24,
                         // if it'snot slack, use that, [of corse might be :)]:
-                        // alignment: Alignment.center,
                       ),
+                      
                     )
                   ],
                 ),
@@ -567,7 +567,7 @@ class _PostList extends StatelessWidget {
                               ),
                               SizedBox(
                                 height: 8,
-                              )
+                              ),
                             ],
                           ),
                         )
@@ -671,9 +671,8 @@ class _BottomNavigation extends StatelessWidget {
                     borderRadius: BorderRadius.circular(32.5),
                   ),
                   height: 65,
-                  child: Image.asset(
-                    "assets/img/icons/plus.png",
-                  ),
+                  child: Assets.img.icons.plus.image(),
+                  
                 ),
               ),
             )
