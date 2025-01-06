@@ -31,77 +31,85 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final Color primaryColor = Color(0xff376AED);
     final Color primaryTextColor = Color.fromARGB(255, 13, 37, 60);
     final Color secondaryTextColor = Color.fromARGB(255, 45, 67, 121);
 
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-          textTheme: TextTheme(
-
-              /// bodyText [story name]
-              bodyMedium: TextStyle(
-                fontFamily: FontFamily.avenir,
-                color: primaryTextColor,
-                fontSize: 12,
-              ),
-
-              /// subtitle1 [hello user]
-              titleSmall: TextStyle(
-                fontFamily: FontFamily.avenir,
-                fontSize: 18,
-                fontWeight: FontWeight.w200,
-                color: secondaryTextColor,
-              ),
-
-              /// subtitle2 [Title small list]
-              titleMedium: TextStyle(
-                fontFamily: FontFamily.avenir,
-                fontSize: 18,
-                fontWeight: FontWeight.w400,
-                color: secondaryTextColor,
-              ),
-              //Caption in bottom navigating
-              displaySmall: TextStyle(
-                fontFamily: FontFamily.avenir,
-                fontWeight: FontWeight.w700,
-                color: Color(0xff7B8BB2),
-                fontSize: 10,
-              ),
-              headlineSmall: TextStyle(
-                  //headline 6 : [Explore Today's],
-                  fontFamily: FontFamily.avenir,
-                  fontSize: 24,
-                  color: primaryTextColor,
-                  fontWeight: FontWeight.w700),
-              // headline 6 : [Category Cart Name]
-              labelMedium: TextStyle(
-                fontFamily: FontFamily.avenir,
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              )),
-          useMaterial3: true,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.light(
+          primary: primaryColor,
+          onPrimary: Colors.white,
+          onSurface: primaryTextColor,
+          surface: Color(0xffFBFCFF),
+          //on
         ),
-        // home: Stack(
-        //   children: [
-        //     Positioned.fill(
-        //       child: const MyHomePage(title: 'Fucking blog club project'),
-        //     ),
-        //     Positioned(
-        //       child: _BottomNavigation(),
-        //       right: 0,
-        //       left: 0,
-        //       bottom: 0,
-        //     ),
-        //   ],
-        // )
-        // Start with this page 
-        home: const Splashscreen(),
-        );
+        textTheme: TextTheme(
+
+            /// bodyText [story name]
+            bodyMedium: TextStyle(
+              fontFamily: FontFamily.avenir,
+              color: primaryTextColor,
+              fontSize: 12,
+            ),
+
+            /// subtitle1 [hello user]
+            titleSmall: TextStyle(
+              fontFamily: FontFamily.avenir,
+              fontSize: 18,
+              fontWeight: FontWeight.w200,
+              color: secondaryTextColor,
+            ),
+
+            /// subtitle2 [Title small list]
+            titleMedium: TextStyle(
+              fontFamily: FontFamily.avenir,
+              fontSize: 18,
+              fontWeight: FontWeight.w400,
+              color: secondaryTextColor,
+            ),
+            //Caption in bottom navigating
+            displaySmall: TextStyle(
+              fontFamily: FontFamily.avenir,
+              fontWeight: FontWeight.w700,
+              color: Color(0xff7B8BB2),
+              fontSize: 10,
+            ),
+            headlineSmall: TextStyle(
+                //headline 6 : [Explore Today's],
+                fontFamily: FontFamily.avenir,
+                fontSize: 24,
+                color: primaryTextColor,
+                fontWeight: FontWeight.w700),
+            // headline 6 : [Category Cart Name]
+            labelMedium: TextStyle(
+              fontFamily: FontFamily.avenir,
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+              color: Colors.white,
+            )),
+        useMaterial3: true,
+      ),
+      // home: Stack(
+      //   children: [
+      //     Positioned.fill(
+      //       child: const MyHomePage(title: 'Fucking blog club project'),
+      //     ),
+      //     Positioned(
+      //       child: _BottomNavigation(),
+      //       right: 0,
+      //       left: 0,
+      //       bottom: 0,
+      //     ),
+      //   ],
+      // )
+      // Start with this page
+      home: const Splashscreen(),
+    );
   }
-} 
+}
+
 class _BottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -167,7 +175,6 @@ class _BottomNavigation extends StatelessWidget {
                   ),
                   height: 65,
                   child: Assets.img.icons.plus.image(),
-                  
                 ),
               ),
             )
