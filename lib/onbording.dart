@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_application_blog_club/auth.dart';
 import 'package:flutter_application_blog_club/data.dart';
 import 'package:flutter_application_blog_club/gen/assets.gen.dart';
 import 'package:flutter_application_blog_club/home.dart';
@@ -102,8 +103,7 @@ class _OnboardingState extends State<Onboarding> {
                                     if (page == items.length - 1) {
                                       Navigator.of(context).pushReplacement(
                                           MaterialPageRoute(
-                                              builder: (context) => MyHomePage(
-                                                  title: 'this fucking page')));
+                                              builder: (context) => authScreen()));
                                     } else {
                                       _pageController.animateToPage(page + 1,
                                           duration: Durations.medium1,
