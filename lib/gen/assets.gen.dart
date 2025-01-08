@@ -75,6 +75,9 @@ class $AssetsImgIconsGen {
   AssetGenImage get twitter =>
       const AssetGenImage('assets/img/icons/Twitter.png');
 
+  /// File path: assets/img/icons/Vector.svg
+  SvgGenImage get vector => const SvgGenImage('assets/img/icons/Vector.svg');
+
   /// File path: assets/img/icons/category_1.png
   AssetGenImage get category1 =>
       const AssetGenImage('assets/img/icons/category_1.png');
@@ -108,6 +111,7 @@ class $AssetsImgIconsGen {
         menu,
         search,
         twitter,
+        vector,
         category1,
         category2,
         category3,
@@ -123,8 +127,15 @@ class $AssetsImgPostsGen {
   /// Directory path: assets/img/posts/large
   $AssetsImgPostsLargeGen get large => const $AssetsImgPostsLargeGen();
 
+  /// File path: assets/img/posts/placeholder.png
+  AssetGenImage get placeholder =>
+      const AssetGenImage('assets/img/posts/placeholder.png');
+
   /// Directory path: assets/img/posts/small
   $AssetsImgPostsSmallGen get small => const $AssetsImgPostsSmallGen();
+
+  /// List of all assets
+  List<AssetGenImage> get values => [placeholder];
 }
 
 class $AssetsImgStoriesGen {
