@@ -45,6 +45,15 @@ class MyApp extends StatelessWidget {
           surface: Color(0xffFBFCFF),
           //on
         ),
+        appBarTheme: AppBarTheme(
+          color: Colors.white,
+          foregroundColor: primaryTextColor,
+          titleSpacing: 32,
+          elevation: 0,
+        ),
+        snackBarTheme: SnackBarThemeData(
+          backgroundColor: primaryColor,
+        ),
         textTheme: TextTheme(
 
             /// bodyText [story name]
@@ -113,7 +122,7 @@ class MyApp extends StatelessWidget {
 class _BottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         height: 85,
         // this + bottom navigation is out of normal line,
         // for this use 2 `container` into
