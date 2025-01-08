@@ -242,9 +242,7 @@ class _StoryList extends StatelessWidget {
 }
 
 class _CategoryList extends StatelessWidget {
-  const _CategoryList({
-    super.key,
-  });
+  const _CategoryList();
 
   @override
   Widget build(BuildContext context) {
@@ -344,7 +342,7 @@ class because extends StatelessWidget {
 }
 
 class _PostList extends StatelessWidget {
-  _PostList({Key? key}) : super(key: key);
+  const _PostList({super.key});
   @override
   Widget build(BuildContext context) {
     final postList = AppDatabase.posts;
@@ -490,7 +488,6 @@ class _PostList extends StatelessWidget {
 
 class _Post extends StatefulWidget {
   const _Post({
-    super.key,
     required this.post,
   });
 

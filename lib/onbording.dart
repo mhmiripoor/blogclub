@@ -44,7 +44,7 @@ class _OnboardingState extends State<Onboarding> {
             child: Column(
               children: [
                 Assets.img.background.onboarding.image(),
-                Container(
+                SizedBox(
                   height: 324,
                   child: Container(
                     padding: EdgeInsets.fromLTRB(32, 32, 32, 32),

@@ -1,7 +1,5 @@
-import 'dart:ui'; // Keep this for Size
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_application_blog_club/gen/assets.gen.dart';
 import 'package:flutter_application_blog_club/home.dart';
 
