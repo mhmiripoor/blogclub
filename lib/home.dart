@@ -364,148 +364,139 @@ class _PostList extends StatelessWidget {
                     )))
           ],
         ),
-        SizedBox(
-          // width: MediaQuery.of(context).size.width,
-          child: ListView.builder(
-              itemCount: postList.length,
-              itemExtent: 151,
-              // bad performance in long list
-              // in list view should set
-              shrinkWrap: true,
-              physics: ClampingScrollPhysics(),
-              itemBuilder: (context, index) {
-                final post = postList[index];
-                return Container(
-                  // not ues
-                  // height: 149,
-                  margin: const EdgeInsets.fromLTRB(32, 8, 32, 8),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(24),
-                      boxShadow: [
-                        BoxShadow(blurRadius: 10, color: Color(0x1a5282FF))
-                      ]),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                            'assets/img/posts/small/${post.imageFileName}'),
-                        SizedBox(
-                          width: 16,
-                        ),
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                height: 8,
-                              ),
-                              // Caption Text
-                              Text(
-                                post.caption,
-                                style: TextStyle(
-                                    fontFamily: MyApp.fontFamily,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 14,
-                                    color:
-                                        Theme.of(context).colorScheme.primary),
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              // Title Post
-                              Text(
-                                post.title,
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Row(
-                                children: [
-                                  Icon(CupertinoIcons.hand_thumbsup,
-                                      size: 16,
-                                      color: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium!
-                                          .color),
-                                  SizedBox(
-                                    width: 4,
-                                  ),
-                                  Text(
-                                    post.likes,
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium,
-                                  ),
-                                  SizedBox(
-                                    width: 4,
-                                  ),
-                                  Icon(CupertinoIcons.clock,
-                                      size: 16,
-                                      color: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium!
-                                          .color),
-                                  SizedBox(
-                                    width: 4,
-                                  ),
-                                  Text(
-                                    post.time,
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium,
-                                  ),
-                                  Container(
-                                    child: Expanded(
-                                      child: Icon(
-                                          post.isBookmarked
-                                              ? CupertinoIcons.bookmark_fill
-                                              : CupertinoIcons.bookmark,
-                                          size: 16,
-                                          color: Color.fromARGB(
-                                              255, 55, 106, 237)),
-                                    ),
-                                  )
-                                ],
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                );
-              }),
-        )
+        Post(postList: postList)
       ],
     );
   }
 }
 
-class _Post extends StatefulWidget {
-  const _Post({
-    required this.post,
+class Post extends StatelessWidget {
+  const Post({
+    super.key,
+    required this.postList,
   });
 
-  final PostData post;
+  final List<PostData> postList;
 
-  @override
-  State<_Post> createState() => _PostState();
-}
-
-class _PostState extends State<_Post> {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text('data test in bute'),
-      ],
+    return SizedBox(
+      // width: MediaQuery.of(context).size.width,
+      child: ListView.builder(
+          itemCount: postList.length,
+          itemExtent: 151,
+          // bad performance in long list
+          // in list view should set
+          shrinkWrap: true,
+          physics: ClampingScrollPhysics(),
+          itemBuilder: (context, index) {
+            final post = postList[index];
+            return Container(
+              // not ues
+              // height: 149,
+              margin: const EdgeInsets.fromLTRB(32, 8, 32, 8),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(24),
+                  boxShadow: [
+                    BoxShadow(blurRadius: 10, color: Color(0x1a5282FF))
+                  ]),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: Row(
+                  children: [
+                    Image.asset(
+                        'assets/img/posts/small/${post.imageFileName}'),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: 8,
+                          ),
+                          // Caption Text
+                          Text(
+                            post.caption,
+                            style: TextStyle(
+                                fontFamily: MyApp.fontFamily,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 14,
+                                color:
+                                    Theme.of(context).colorScheme.primary),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          // Title Post
+                          Text(
+                            post.title,
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Row(
+                            children: [
+                              Icon(CupertinoIcons.hand_thumbsup,
+                                  size: 16,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .color),
+                              SizedBox(
+                                width: 4,
+                              ),
+                              Text(
+                                post.likes,
+                                style:
+                                    Theme.of(context).textTheme.bodyMedium,
+                              ),
+                              SizedBox(
+                                width: 4,
+                              ),
+                              Icon(CupertinoIcons.clock,
+                                  size: 16,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .color),
+                              SizedBox(
+                                width: 4,
+                              ),
+                              Text(
+                                post.time,
+                                style:
+                                    Theme.of(context).textTheme.bodyMedium,
+                              ),
+                              Container(
+                                child: Expanded(
+                                  child: Icon(
+                                      post.isBookmarked
+                                          ? CupertinoIcons.bookmark_fill
+                                          : CupertinoIcons.bookmark,
+                                      size: 16,
+                                      color: Color.fromARGB(
+                                          255, 55, 106, 237)),
+                                ),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            );
+          }),
     );
-    // ignore: dead_code
-    Container();
   }
 }
+
