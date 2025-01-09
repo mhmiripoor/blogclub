@@ -61,6 +61,11 @@ class MyApp extends StatelessWidget {
               fontFamily: FontFamily.avenir,
               color: primaryTextColor,
               fontSize: 12,
+            ), 
+            bodyLarge: TextStyle(
+              fontFamily: FontFamily.avenir,
+              color: primaryTextColor,
+              fontSize: 14,
             ),
 
             /// subtitle1 [hello user]
